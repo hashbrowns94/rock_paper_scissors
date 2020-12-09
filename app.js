@@ -1,9 +1,20 @@
 //make a function that randomly returns rock, paper, or scissors
 let weapon = [ 'rock', 'paper', 'scissors' ];
-//let playerSelection = prompt('rock, paper, or scissors?').toLowerCase();
 let computerSelection = computerPlay();
 let playerScore = 0;
 let computerScore = 0;
+let rock = document.querySelectorAll('#rock');
+let paper = document.querySelectorAll('#paper');
+let scissors = document.querySelectorAll('#scissors');
+const buttons = document.querySelectorAll('button');
+let playerSelection = "";
+
+buttons.forEach((button) => {
+	button.addEventListener('click', (e) => {
+		playerSelection = e.target.innerHTML;
+		roundOne(playerSelection, computerPlay());
+	})
+})
 
 function computerPlay() {
 	return weapon[Math.floor(Math.random() * weapon.length)];
@@ -11,24 +22,27 @@ function computerPlay() {
 
 //write a function that plays one round of rock paper scissors
 function roundOne(playerSelection, computerSelection) {
-	console.log(playerSelection);
-	console.log(computerSelection);
+	alert("computer plays " + computerSelection);
 	if (
 		(playerSelection == 'rock' && computerSelection == 'paper') ||
 		(playerSelection == 'paper' && computerSelection == 'scissors') ||
 		(playerSelection == 'scissors' && computerSelection == 'rock')
 	) {
 		computerScore++;
-		return `You lose! ${computerSelection} beats ${playerSelection}`;
+		return alert(`You lose! ${computerSelection} beats ${playerSelection}`);
 	} else if (playerSelection == computerSelection) {
-		return `DRAW! Computer also chose ${computerSelection}`;
+		return alert(`DRAW! Computer also chose ${computerSelection}`);
 	} else {
 		playerScore++;
-		return 'Winner!';
+		return alert('Winner!');
 	}
 }
 
-//write a function that plays 5 rounds
+
+
+
+
+/*write a function that plays 5 rounds
 function game(numRounds) {
 	for (let i = 0; i < numRounds; i++) {
 		let playerSelection = prompt('choose rock, paper, or scissors').toLowerCase();
@@ -51,3 +65,4 @@ function game(numRounds) {
 
 console.log(game(5));
 //console.log(roundOne(playerSelection, computerSelection));
+*/
